@@ -1,0 +1,23 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PlatnumMan/proshop.git"
+  },
+  "author": "Fiston",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PlatnumMan/proshop/issues"
+  },
+  "homepage": "https://github.com/PlatnumMan/proshop#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
