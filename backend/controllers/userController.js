@@ -9,20 +9,25 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  const token = generateToken(user._id);
-
-  if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token,
-    });
-  } else {
+  if (!user) {
     res.status(401);
     throw new Error('Invalid credentials');
   }
+
+  if (!(await user.matchPassword(password))) {
+    res.status(401);
+    throw new Error('Invalid credentials');
+  }
+
+  const token = generateToken(user._id);
+
+  res.json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.isAdmin,
+    token,
+  });
 });
 
 // @desc    Register a new user
